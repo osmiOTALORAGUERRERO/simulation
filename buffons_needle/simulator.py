@@ -4,18 +4,17 @@ from tkinter import ttk
 import matplotlib.pyplot as plt
 from board import Board
 from needle import Needle
-from line import Line
 
 
 def pi_probability(n_needles, n_intersection, needle_size, distance_between_lines):
     return (2*needle_size*n_needles)/(distance_between_lines*n_intersection)
 
 def initSimulation():
-    print(type(n_needles.get()), n_needles.get())
-    print(type(b_width.get()), b_width.get())
-    print(type(b_height.get()), b_height.get())
-    print(b_lines.get())
-    print(size_needle.get())
+    # print(type(n_needles.get()), n_needles.get())
+    # print(type(b_width.get()), b_width.get())
+    # print(type(b_height.get()), b_height.get())
+    # print(b_lines.get())
+    # print(size_needle.get())
 
     if int(n_needles.get()) <= 0:
         return
@@ -29,12 +28,9 @@ def initSimulation():
     my_board = None
 
     try:
-        print('hola')
         if (int(b_width.get())>0 and int(b_height.get())>0):
-            print('hola1')
             my_board = Board(int(b_height.get()), int(b_width.get()))
         else:
-            print('hola2')
             my_board = Board()
     except Exception as e:
         print(e)
@@ -49,7 +45,6 @@ def initSimulation():
     needle_size = None
 
     if float(size_needle.get()) <= my_board.distance_between_lines:
-        print('hola')
         needle_size = float(size_needle.get()) if (float(size_needle.get()) > 0) else my_board.distance_between_lines
     else:
         print('Line so large')
