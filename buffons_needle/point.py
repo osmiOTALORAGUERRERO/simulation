@@ -1,5 +1,5 @@
 class Point(object):
-    """docstring for Point."""
+    """Reference of point in the cartesian plane."""
 
     def __init__(self, x:float, y:float):
         super(Point, self).__init__()

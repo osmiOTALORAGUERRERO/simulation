@@ -3,7 +3,7 @@ from line import Line
 from point import Point
 
 class Board(object):
-    """docstring for Board."""
+    """The board with parallel lines a needles droped."""
 
     def __init__(self, height=100, width=100, n_lines=20):
         super(Board, self).__init__()

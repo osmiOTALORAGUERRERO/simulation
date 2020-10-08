@@ -5,6 +5,10 @@ import matplotlib.pyplot as plt
 from board import Board
 from needle import Needle
 
+"""
+Author: Osmi Santiago Otálora Guerrero
+last_modification: 17/08/2020
+"""
 
 def pi_probability(n_needles, n_intersection, needle_size, distance_between_lines):
     return (2*needle_size*n_needles)/(distance_between_lines*n_intersection)

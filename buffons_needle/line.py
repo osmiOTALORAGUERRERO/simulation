@@ -1,7 +1,7 @@
 from point import Point
 
 class Line(object):
-    """docstring for Line."""
+    """represents a parallel line for the board."""
 
     def __init__(self, y_start, x_end):
         super(Line, self).__init__()

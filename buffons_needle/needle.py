@@ -3,7 +3,7 @@ import random
 import math
 
 class Needle(object):
-    """docstring for Needle."""
+    """reprensents a neeedle with size, and random position in the cartesian plane."""
 
     def __init__(self, size:float):
         super(Needle, self).__init__()
