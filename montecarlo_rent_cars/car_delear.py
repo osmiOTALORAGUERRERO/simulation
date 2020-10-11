@@ -35,7 +35,9 @@ class CarDelear(object):
         return quantity
 
     def cars_no_rented(self, requested_cars):
-        return abs(self.cars_idle-requested_cars)
+        if self.cars_idle-requested_cars < 0:
+            return abs(self.cars_idle-requested_cars)
+        return 0
 
     #retorna costos de gannacia por los autos rentados
     def calculate_costs_rents(self):
