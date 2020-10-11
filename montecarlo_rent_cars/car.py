@@ -3,13 +3,13 @@ class Car(object):
 
     def __init__(self):
         super(Car, self).__init__()
-        self.rent = false
+        self.rent = False
         self.rent_days = 0
 
     def rent_car(self, rent_days):
-        if !self.rent:
+        if not self.rent:
             self.rent_days = rent_days
-            self.rent = true
+            self.rent = True
             return True
         return False
 
