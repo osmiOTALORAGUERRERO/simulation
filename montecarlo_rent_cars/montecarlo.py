@@ -23,7 +23,7 @@ class Montecarlo(object):
         #tabla que almacena el resultado de las tablas anuales
         self.table_result_final = {}
         self.annual_auto_cost = 75000
-        self.days = 5
+        self.days = 365
         self.historical_rented_cars = {
             '0' : 0.10,
             '1' : 0.20,
@@ -119,6 +119,7 @@ class Montecarlo(object):
         neto_profit = gross_profit - loss_total
         reached = neto_profit >= goal
 
+        self.table_result_final['purchased_cars'+str(purchased_cars)]['purchased_cars'] = purchased_cars
         self.table_result_final['purchased_cars'+str(purchased_cars)]['gross_profit'] = gross_profit
         self.table_result_final['purchased_cars'+str(purchased_cars)]['loss_idle'] = loss_idle
         self.table_result_final['purchased_cars'+str(purchased_cars)]['loss_no_rent'] = loss_no_rent
@@ -141,7 +142,48 @@ class Montecarlo(object):
         }
 
     def print_table_annual(self, purchased_cars):
-        print(self.table_by_purchased_cars)
+        import os
+        import time
+        tbpc = self.table_by_purchased_cars
+        path = os.getcwd()+'\\reports\\'+'table-annual'+str(time.time())+'pc'+str(purchased_cars)+'.csv'
+        fw = open(path,'w')
+        header = 'days, cars_request, '
+        for car in tbpc['days_cars_rented']:
+            header += car+', '
+        header += 'cars_rented, cars_idle, cars_no_rent, costs_rents, costs_idle, costs_no_rent\n'
+        fw.write(header)
+        body = ''
+        for day in range(self.days):
+            for row in tbpc:
+                if row == 'days_cars_rented':
+                    for dcr in tbpc[row]:
+                        body += str(tbpc[row][dcr][day])+', '
+                    continue
+                if row == 'costs_no_rent':
+                    body += str(tbpc[row][day])+'\n'
+                    continue
+                body += str(tbpc[row][day])+', '
+        fw.write(body)
+        fw.close()
+        tbpc = None
+        # print(self.table_by_purchased_cars)
 
     def print_table_final(self):
-        print(self.table_result_final)
+        import os
+        import time
+        trf = self.table_result_final
+        path = os.getcwd()+'\\reports\\'+'table-final'+str(time.time())+'.csv'
+        fw = open(path,'w')
+        header = 'purchased_cars, gross_profit, loss_idle, loss_no_rent, loss_total, neto_profit, goal, reached\n'
+        body = ''
+        for result in trf:
+            for row in trf[result]:
+                if row == 'reached':
+                    body += str(trf[result][row])+'\n'
+                    continue
+                body += str(trf[result][row])+', '
+        fw.write(header)
+        fw.write(body)
+        fw.close()
+        trf = None
+        # print(self.table_result_final)
