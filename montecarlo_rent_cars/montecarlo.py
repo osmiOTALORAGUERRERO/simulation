@@ -8,6 +8,7 @@ class Montecarlo(object):
     def __init__(self):
         super(Montecarlo, self).__init__()
         self.max_cars = 4
+        self.counter_update_annual = 0
         #tabla anual
         self.table_by_purchased_cars = {
             'days' : [],
@@ -103,7 +104,7 @@ class Montecarlo(object):
             return 4
 
     def update_table_final(self, purchased_cars):
-        self.table_result_final['purchased_cars'+str(purchased_cars)] = {}
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)] = {}
         gross_profit = 0
         neto_profit = 0
         loss_idle = 0
@@ -119,14 +120,15 @@ class Montecarlo(object):
         neto_profit = gross_profit - loss_total
         reached = neto_profit >= goal
 
-        self.table_result_final['purchased_cars'+str(purchased_cars)]['purchased_cars'] = purchased_cars
-        self.table_result_final['purchased_cars'+str(purchased_cars)]['gross_profit'] = gross_profit
-        self.table_result_final['purchased_cars'+str(purchased_cars)]['loss_idle'] = loss_idle
-        self.table_result_final['purchased_cars'+str(purchased_cars)]['loss_no_rent'] = loss_no_rent
-        self.table_result_final['purchased_cars'+str(purchased_cars)]['loss_total'] = loss_total
-        self.table_result_final['purchased_cars'+str(purchased_cars)]['neto_profit'] = neto_profit
-        self.table_result_final['purchased_cars'+str(purchased_cars)]['goal'] = goal
-        self.table_result_final['purchased_cars'+str(purchased_cars)]['reached'] = reached
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['purchased_cars'] = purchased_cars
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['gross_profit'] = gross_profit
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['loss_idle'] = loss_idle
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['loss_no_rent'] = loss_no_rent
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['loss_total'] = loss_total
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['neto_profit'] = neto_profit
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['goal'] = goal
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['reached'] = reached
+        self.counter_update_annual += 1
 
     def restart_table_annual(self):
         self.table_by_purchased_cars = {
@@ -166,11 +168,13 @@ class Montecarlo(object):
         fw.write(body)
         fw.close()
         tbpc = None
+        print('table annual: '+str(path))
         # print(self.table_by_purchased_cars)
 
     def print_table_final(self):
         import os
         import time
+        self.counter_update_annual = 0
         trf = self.table_result_final
         path = os.getcwd()+'\\reports\\'+'table-final'+str(time.time())+'.csv'
         fw = open(path,'w')
@@ -186,4 +190,5 @@ class Montecarlo(object):
         fw.write(body)
         fw.close()
         trf = None
+        print('table final: '+str(path))
         # print(self.table_result_final)

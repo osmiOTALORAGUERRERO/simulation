@@ -3,6 +3,9 @@ from montecarlo import Montecarlo
 while True:
     simulator = Montecarlo()
     mode = int(input('Modo de ejecucion: \n1. Automatico(0-4) \n2. Manual\n'))
+    if mode != 1 and mode != 2:
+        print('No selecciono ningun modo')
+        break
     if mode==1:
         simulator.run()
         continue
@@ -15,8 +18,5 @@ while True:
             if int(purchased_cars) >= 0:
                 simulator.run(int(purchased_cars))
         continue
-    if mode != 1 and mode != 2:
-        print('No selecciono ningun modo')
-        break
 
 print('Simulador terminado')
