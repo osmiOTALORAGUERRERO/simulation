@@ -127,6 +127,7 @@ class Montecarlo(object):
         self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['loss_total'] = loss_total
         self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['neto_profit'] = neto_profit
         self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['goal'] = goal
+        self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['real_profit'] = neto_profit-goal
         self.table_result_final['purchased_cars'+str(purchased_cars)+str(self.counter_update_annual)]['reached'] = reached
         self.counter_update_annual += 1
 
