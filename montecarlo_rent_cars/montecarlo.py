@@ -179,7 +179,7 @@ class Montecarlo(object):
         trf = self.table_result_final
         path = os.getcwd()+'\\reports\\'+'table-final'+str(time.time())+'.csv'
         fw = open(path,'w')
-        header = 'purchased_cars, gross_profit, loss_idle, loss_no_rent, loss_total, neto_profit, goal, reached\n'
+        header = 'purchased_cars, gross_profit, loss_idle, loss_no_rent, loss_total, neto_profit, goal, real_profit, reached\n'
         body = ''
         for result in trf:
             for row in trf[result]:
