@@ -19,7 +19,7 @@ class Nurse(MedicalBody):
             minutes = 0
             for i in range(12):
                 random_sum += random.random()
-                minutes = 7.5+2.92*(random_sum-6)
+            minutes = 7.5+2.92*(random_sum-6)
             if minutes > 0:
                 break
         return int(minutes), random_sum

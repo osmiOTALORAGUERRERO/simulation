@@ -31,7 +31,7 @@ class EmergencyDoctor(MedicalBody):
             minutes = 0
             for i in range(12):
                 random_sum += random.random()
-                minutes = 10+8*(random_sum-6)
+            minutes = 10+8*(random_sum-6)
             if minutes > 0:
                 break
         return int(minutes), random_sum
