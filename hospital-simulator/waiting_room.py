@@ -1,4 +1,4 @@
-from connectionDB import mysql
+from connectionDB import mysql, create_entities
 
 class WaitingRoom(object):
     """docstring for WaitingRoom."""
@@ -7,6 +7,8 @@ class WaitingRoom(object):
         super(WaitingRoom, self).__init__()
         self.id = id
         self.patients = []
+        create_entities('hospital_ingreso', self.id)
+
 
     def assign_patient(self, patient):
         self.patients.append(patient)
